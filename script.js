@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
         defaultActiveLink.classList.add("active");
     }
 
-    // Tu código original sin modificaciones
+
     const sections = document.querySelectorAll("#sobre-mí, #proyectos, #mis-videojuegos, #contacto");
     const navLinks = document.querySelectorAll(".nav-links a");
     const headerHeight = document.querySelector('.navbar').offsetHeight;
@@ -34,22 +34,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('scroll', updateActiveSection);
 
-    // Toggle menu visibility on mobile
-    const menuToggle = document.getElementById('menu-toggle');
-    const navbar = document.querySelector('.navbar');
-    const menuOverlay = document.getElementById('menu-overlay');
+       // Toggle menú hamburguesa para móvil
+const menuToggle = document.getElementById('menu-toggle');
+const navLinksContainer = document.getElementById('nav-links');
 
-    menuToggle.addEventListener('click', () => {
-        navbar.classList.toggle('active');
-        menuOverlay.classList.toggle('show');
-        document.body.style.overflow = navbar.classList.contains('active') ? 'hidden' : 'auto';
-    });
+menuToggle.addEventListener('click', () => {
+    navLinksContainer.classList.toggle('hidden');
+});
 
-    menuOverlay.addEventListener('click', () => {
-        navbar.classList.remove('active');
-        menuOverlay.classList.remove('show');
-        document.body.style.overflow = 'auto';
-    });
 
     // Cerrar menú al hacer clic en un enlace (en móviles)
     navLinks.forEach(link => {
