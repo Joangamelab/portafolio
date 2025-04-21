@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joan Ignacio | Portafolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="nav-links">
+            <a href="#sobre-mí" class="nav-item">Sobre mí</a>
+            <a href="#proyectos" class="nav-item">Proyectos</a>
+            <a href="#mis-videojuegos" class="nav-item">mis videojuegos</a>
+            <a href="#contacto" class="nav-item">Contacto</a>
+        </div>
+        <div class="title-container">
+            <h1 class="text-white">Desarrollador de Videojuegos & analista de datos</h1>
+            <!-- Botón para mostrar/ocultar menú - solo visible en móviles -->
+            <button class="menu-toggle-button lg:hidden" id="menu-toggle">&#9776;</button>
+        </div>
+    </div>
+
+    </div>
+<div id="sobre-mí" class="content-section" style="padding-top: 100px;">
+    <!-- Fondo oscuro cuando el menú se activa -->
+    <div class="menu-overlay" id="menu-overlay"></div>
+    <div class="flex justify-center relative mb-8">
+        <img src="imagen.JPEG" alt="Joan Ignacio"
+             class="w-40 h-40 rounded-full shadow-lg pixel-hover">
+    </div>
+    <h2>Sobre mí</h2>
+    <p class="justificado">Soy Joan Ignacio, desarrollador de videojuegos y analista de datos. Descubre más sobre mi trayectoria a través de esta experiencia interactiva:</p>
+    <div id="visual-novel" class="hidden fixed inset-0 z-50 bg-black bg-opacity-90 text-white font-['Press_Start_2P'] p-4 flex items-center justify-center">
+    <div id="vn-current-scene" class="bg-[#0f3460] p-4 rounded-xl w-full max-w-md space-y-4">
+        <div class="vn-name text-lg font-bold">Joan</div>
+        <div class="vn-text text-sm"></div>
+        <div class="vn-choices space-y-2"></div>
+    </div>
+</div>
+    <div class="flex justify-center mt-4">
+        <button class="start-btn bg-[#0f3460] text-white py-2 px-4 rounded hover:bg-[#0088cc] transition font-['Press_Start_2P'] text-sm">Conoce mi historia</button>
+    </div>
+    </div>
+    <div id="proyectos" class="content-section">
+        <h2>Proyectos</h2>
+        <p class="justificado">Aquí irán los detalles sobre mis proyectos más recientes y en desarrollo.</p>
+    </div>
+    
+    <div id="mis-videojuegos" class="content-section">
+        <h2>mís videojuegos</h2>
+        <p class="justificado">desarrollo de videojuegos contenido.</p>
+    </div>
+    <section id="contacto" class="content-section" style="background-color: rgba(0, 43, 69, 0.05); border-radius: 8px; border: 1px solid rgba(0, 43, 69, 0.1);">
+        <h2 style="color: #0f3460;">Contacto</h2>
+        <p class="mt-4 mb-6">¿Tienes un proyecto en mente o quieres colaborar? ¡Escríbeme!</p>
+        <form class="max-w-md mx-auto space-y-4">
+            <div>
+                <input type="text" placeholder="Nombre" class="w-full p-3 rounded border border-gray-300 focus:border-[#00aaff] focus:ring-1 focus:ring-[#00aaff] outline-none transition">
+            </div>
+            <div>
+                <input type="email" placeholder="Correo electrónico" class="w-full p-3 rounded border border-gray-300 focus:border-[#00aaff] focus:ring-1 focus:ring-[#00aaff] outline-none transition">
+            </div>
+            <div>
+                <textarea placeholder="Mensaje" rows="4" class="w-full p-3 rounded border border-gray-300 focus:border-[#00aaff] focus:ring-1 focus:ring-[#00aaff] outline-none transition"></textarea>
+            </div>
+            <button type="submit" class="w-full py-3 px-6 bg-[#0f3460] text-white rounded hover:bg-[#0088cc] transition">Enviar mensaje</button>
+        </form>
+    </section>
+
+    <footer class="text-center p-6 mt-6 bg-[rgba(0,43,69,0.9)] text-white">
+        <p>&copy; 2025 Joan Ignacio | Versión 3.0</p>
+        <p>
+            <a href="https://www.linkedin.com/in/joan-cruz-de-pe%C3%B1a-a0916922b/" target="_blank" class="hover:text-blue-400">LinkedIn</a> | 
+            <a href="https://www.instagram.com/joangamelab/" target="_blank" class="hover:text-blue-400">Instagram</a>
+        </p>
+        </footer>
+</html>
+</body>
