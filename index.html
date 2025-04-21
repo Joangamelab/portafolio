@@ -11,21 +11,18 @@
 </head>
 <body>
 
-     <div class="navbar">
-        <div class="nav-links">
-            <a href="#sobre-mí" class="nav-item">Sobre mí</a>
-            <a href="#proyectos" class="nav-item">Proyectos</a>
-            <a href="#mis-videojuegos" class="nav-item">mis videojuegos</a>
-            <a href="#contacto" class="nav-item">Contacto</a>
-        </div>
-        <div class="title-container">
-            <h1 class="text-white">Desarrollador de Videojuegos & analista de datos</h1>
-            <!-- Botón para mostrar/ocultar menú - solo visible en móviles -->
-            <button class="menu-toggle-button lg:hidden" id="menu-toggle">&#9776;</button>
-
-        </div>
+         <div class="navbar">
+    <div class="nav-links hidden lg:flex" id="nav-links">
+        <a href="#sobre-mí" class="nav-item">Sobre mí</a>
+        <a href="#proyectos" class="nav-item">Proyectos</a>
+        <a href="#mis-videojuegos" class="nav-item">Mis videojuegos</a>
+        <a href="#contacto" class="nav-item">Contacto</a>
     </div>
+    <div class="title-container">
+        <h1 class="text-white">Desarrollador de Videojuegos & analista de datos</h1>
+        <button class="menu-toggle-button lg:hidden" id="menu-toggle">&#9776;</button>
     </div>
+</div>
 <div id="sobre-mí" class="content-section" style="padding-top: 100px;">
     <!-- Fondo oscuro cuando el menú se activa -->
     <div class="menu-overlay" id="menu-overlay"></div>
