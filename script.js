@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
         defaultActiveLink.classList.add("active");
     }
 
-    const sections = document.querySelectorAll("#sobre-mí, #proyectos, #mis-videojuegos, #contacto");
+    const sections = document.querySelectorAll("#sobre-mi, #proyectos, #mis-videojuegos, #contacto");
     const navLinks = document.querySelectorAll(".nav-links a");
     const headerHeight = document.querySelector('.navbar').offsetHeight;
 
