@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Marcar "sobre-mí" como sección activa por defecto
-    const defaultActiveLink = document.querySelector('.nav-links a[href="#sobre-mí"]');
+    const defaultActiveLink = document.querySelector('.nav-links a[href="#sobre-mi"]');
     if (defaultActiveLink) {
         defaultActiveLink.classList.add("active");
     }
