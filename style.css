@@ -88,7 +88,8 @@ font-family: 'Press Start 2P', cursive;
     color: white;
     font-size: 1.5rem;
     cursor: pointer;
-    padding: 0.8rem;
+    padding: 1.8rem;
+  
 } 
 /* Estilo para cuando el menú está desplegado en móvil */
 .nav-links.show {
@@ -107,19 +108,33 @@ font-family: 'Press Start 2P', cursive;
     .nav-links {
         display: none;
     }
-    
+
     .title-container {
-        justify-content: flex-start; /* Cambia a alineación izquierda en móvil */
-        padding-left: 3rem; /* Añade espacio a la izquierda */
-        padding-right: 1rem; /* Opcional: puedes quitar el padding derecho */
+        display: flex;
+        align-items: center;
+        justify-content: flex-start; /* h1 a la izquierda, botón a la derecha con margin-right: auto en h1 */
+        padding-left: 2rem;
+        padding-right: 2rem;
+        position: relative; /* Necesario si usas position absolute para el botón */
     }
-    
-    /* Si quieres que el botón hamburguesa siga a la derecha */
+
     .title-container h1 {
-        margin-right: auto; /* Empuja el título a la izquierda y el botón a la derecha */
+        margin-right: auto; /* Empuja el botón hacia la derecha */
+    }
+
+    .menu-toggle-button {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.8rem;
     }
 }
-
 /* Estilos para la novela visual */
 .visual-novel-container {
     width: 100%;
