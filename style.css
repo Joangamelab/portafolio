@@ -124,7 +124,7 @@ font-family: 'Press Start 2P', cursive;
 
     .menu-toggle-button {
         position: absolute;
-        right: 1rem;
+        right: -3rem;
         top: 50%;
         transform: translateY(-50%);
         background: none;
