@@ -111,7 +111,7 @@ font-family: 'Press Start 2P', cursive;
     .title-container {
         justify-content: flex-start; /* Cambia a alineación izquierda en móvil */
         padding-left: 3rem; /* Añade espacio a la izquierda */
-        padding-right: 3rem; /* Opcional: puedes quitar el padding derecho */
+        padding-right: 1rem; /* Opcional: puedes quitar el padding derecho */
     }
     
     /* Si quieres que el botón hamburguesa siga a la derecha */
