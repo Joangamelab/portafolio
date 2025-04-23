@@ -78,19 +78,9 @@
 }
 .title-container h1 {
 margin-right: 4 rem;
-font-size: 8.4px;
+font-size: 9.0px;
 font-family: 'Press Start 2P', cursive;
   }
-
-.menu-toggle-button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 1.8rem;
-  
-} 
 /* Estilo para cuando el menú está desplegado en móvil */
 .nav-links.show {
     display: flex;
