@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
         defaultActiveLink.classList.add("active");
     }
 
-
     const sections = document.querySelectorAll("#sobre-mí, #proyectos, #mis-videojuegos, #contacto");
     const navLinks = document.querySelectorAll(".nav-links a");
     const headerHeight = document.querySelector('.navbar').offsetHeight;
@@ -34,12 +33,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('scroll', updateActiveSection);
 
-       // Toggle menú hamburguesa para móvil
+   // Toggle menú hamburguesa para móvil
 const menuToggle = document.getElementById('menu-toggle');
 const navLinksContainer = document.getElementById('nav-links');
 
 menuToggle.addEventListener('click', () => {
-    navLinksContainer.classList.toggle('hidden');
+    navLinksContainer.classList.toggle('show');
 });
 
 
@@ -53,6 +52,7 @@ menuToggle.addEventListener('click', () => {
             }
         });
     });
+
 
     // --- NOVELA VISUAL ---
     let currentScene = 'start';

@@ -1,4 +1,4 @@
-body {
+  body {
     font-family: Arial, sans-serif;
     background: white;
     color: #333;
@@ -10,28 +10,36 @@ body {
     top: 0;
     width: 100%;
     background: rgba(0, 43, 69, 0.9);
-    padding: 15px 30px;
+    padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    gap: 30px;
+    gap: 40px;
     z-index: 1000;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 9.5px;
+    font-family: 'Press Start 2P',cursive;
+    font-size: 9.6px;
 }
+
 .nav-links {
     display: flex;
-    gap: 20px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 10px;
+    align-items: center;
+   
 }
 .nav-links a {
     color: white;
     text-decoration: none;
-    font-size: 9.5px;
+    font-size: 9.6px;
     transition: all 0.3s;
     padding: 5px 10px;
     border-radius: 4px;
     cursor: pointer;
+    white-space: nowrap;
+    display: inline-block;
+    
 }
 .nav-links a:hover, .nav-links a.active {
     color: #00aaff;
@@ -59,6 +67,59 @@ body {
     color: white;
     margin-top: 40px;
 }
+
+.title-container {
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+    padding-right: 1rem;
+    width: 100%;
+
+}
+.title-container h1 {
+margin-right: 4 rem;
+font-size: 8.4px;
+font-family: 'Press Start 2P', cursive;
+  }
+
+.menu-toggle-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.8rem;
+} 
+/* Estilo para cuando el menú está desplegado en móvil */
+.nav-links.show {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 100%; /* Justo debajo del navbar */
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: rgba(0, 43, 69, 0.9);
+}
+
+@media screen and (max-width: 1023px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .title-container {
+        justify-content: flex-start; /* Cambia a alineación izquierda en móvil */
+        padding-left: 3rem; /* Añade espacio a la izquierda */
+        padding-right: 3rem; /* Opcional: puedes quitar el padding derecho */
+    }
+    
+    /* Si quieres que el botón hamburguesa siga a la derecha */
+    .title-container h1 {
+        margin-right: auto; /* Empuja el título a la izquierda y el botón a la derecha */
+    }
+}
+
 /* Estilos para la novela visual */
 .visual-novel-container {
     width: 100%;
