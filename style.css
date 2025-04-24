@@ -53,12 +53,12 @@
 }
 @media screen and (max-width: 768px) {
     .content-section {
-        margin: 300px auto 0 auto; /* Más espacio en móviles */
-       padding: 160px 20px; /* Más padding en móviles */
+        margin: 100px auto 0 auto; /* Más espacio en móviles */
+        padding: 120px 20px; 
     }
     
     #contacto {
-        scroll-margin-top: 500px !important; /* Valor importante para móviles */
+        scroll-margin-top: 250px !important; /* Valor importante para móviles */
     }
 }
 .content-section h2 {
