@@ -11,48 +11,66 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateActiveSection() {
         let current = "";
+        // Verificar si estamos cerca del final de la página para activar "contacto"
         const scrollPosition = window.scrollY + headerHeight + 20;
+        const scrollHeight = document.documentElement.scrollHeight;
+        const scrollPosition = window.scrollY + window.innerHeight;
+        const bottomThreshold = scrollHeight - 50; // 50px desde el final
+        
+        // Si estamos cerca del final, activar solo la sección de contacto
+        if (scrollPosition >= bottomThreshold) {
+            navLinks.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === "#contacto") {
+                    link.classList.add("active");
+                }
+            });
+            return; // Salir de la función para no ejecutar el resto
+        }
+        
+        // Para otras posiciones de scroll, usar la lógica normal
+        let current = "";
+        const scrollPos = window.scrollY + headerHeight + 20;
 
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
-            const sectionBottom = sectionTop + sectionHeight;
-
-            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            
+            // Modificamos la condición para ser más precisa
+            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
                 current = section.getAttribute("id");
             }
         });
 
-        navLinks.forEach(link => {
-            link.classList.remove("active");
-            if (link.getAttribute("href") === `#${current}`) {
-                link.classList.add("active");
-            }
-        });
+        // Si encontramos una sección activa, actualizar los enlaces del menú
+        if (current) {
+            navLinks.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === `#${current}`) {
+                    link.classList.add("active");
+                }
+            });
+        }
     }
 
     window.addEventListener('scroll', updateActiveSection);
 
-   // Toggle menú hamburguesa para móvil
-const menuToggle = document.getElementById('menu-toggle');
-const navLinksContainer = document.getElementById('nav-links');
+    // Toggle menú hamburguesa para móvil
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinksContainer = document.getElementById('nav-links');
 
-menuToggle.addEventListener('click', () => {
-    navLinksContainer.classList.toggle('show');
-});
-
+    menuToggle.addEventListener('click', () => {
+        navLinksContainer.classList.toggle('show');
+    });
 
     // Cerrar menú al hacer clic en un enlace (en móviles)
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            if (window.innerWidth <= 768) {
-                navbar.classList.remove('active');
-                menuOverlay.classList.remove('show');
-                document.body.style.overflow = 'auto';
+            if (window.innerWidth <= 1023) { // Cambiado de 768 a 1023 para coincidir con tu media query
+                navLinksContainer.classList.remove('show');
             }
         });
     });
-
 
     // --- NOVELA VISUAL ---
     let currentScene = 'start';
