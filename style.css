@@ -54,7 +54,7 @@
 @media screen and (max-width: 768px) {
     .content-section {
         margin: 100px auto 0 auto; /* Más espacio en móviles */
-        padding: 160px 20px; /* Más padding en móviles */
+       padding: 400px 20px; /* Más padding en móviles */
     }
     
     #contacto {
