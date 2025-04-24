@@ -1,4 +1,6 @@
-const defaultActiveLink = document.querySelector('.nav-links a[href="#sobre-mi"]');
+document.addEventListener('DOMContentLoaded', function() {
+    // Marcar "sobre-mí" como sección activa por defecto
+    const defaultActiveLink = document.querySelector('.nav-links a[href="#sobre-mi"]');
     if (defaultActiveLink) {
         
         defaultActiveLink.classList.add("active");
@@ -27,7 +29,7 @@ const defaultActiveLink = document.querySelector('.nav-links a[href="#sobre-mi"]
         
         // Para otras posiciones de scroll, usar la lógica normal
         let current = "";
-        const scrollPos = window.scrollY + headerHeight + 20;
+        const scrollPos = window.scrollY + headerHeight;
 
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
@@ -148,4 +150,3 @@ const defaultActiveLink = document.querySelector('.nav-links a[href="#sobre-mi"]
 
     updateActiveSection();
 });
-
