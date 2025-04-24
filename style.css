@@ -58,7 +58,7 @@
     }
     
     #contacto {
-        scroll-margin-top: 250px !important; /* Valor importante para móviles */
+        scroll-margin-top: -150px !important; /* Valor importante para móviles */
     }
 }
 .content-section h2 {
