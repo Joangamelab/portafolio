@@ -53,6 +53,7 @@
 }
 @media screen and (max-width: 768px) {
     .content-section {
+        font-size: 9.0px;
         margin: 100px auto 0 auto; /* Más espacio en móviles */
         padding: 120px 20px; 
     }
