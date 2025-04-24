@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateActiveSection() {
         let current = "";
         // Verificar si estamos cerca del final de la página para activar "contacto"
-        c
         const scrollHeight = document.documentElement.scrollHeight;
         const scrollPosition = window.scrollY + window.innerHeight+20;
         const bottomThreshold = scrollHeight - 50; // 50px desde el final
