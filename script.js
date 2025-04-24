@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let current = "";
         // Verificar si estamos cerca del final de la página para activar "contacto"
         const scrollHeight = document.documentElement.scrollHeight;
-        const scrollPosition = window.scrollY + window.innerHeight+20;
+        const scrollPosition = window.scrollY + window.innerHeight;
         const bottomThreshold = scrollHeight - 50; // 50px desde el final
         
         // Si estamos cerca del final, activar solo la sección de contacto
