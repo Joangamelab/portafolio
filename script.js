@@ -149,4 +149,72 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     updateActiveSection();
+    
+    // ----- FORMULARIO DE CONTACTO -----
+    // Código para inicializar EmailJS y gestionar el formulario
+    try {
+        // Inicializar EmailJS con tu clave pública
+        // IMPORTANTE: Reemplaza 'TU_CLAVE_PUBLICA' con tu clave pública real de EmailJS
+        emailjs.init('TU_CLAVE_PUBLICA');
+        
+        // Referencia al formulario
+        const contactForm = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const formStatus = document.getElementById('form-status');
+        const successMessage = document.getElementById('success-message');
+        const errorMessage = document.getElementById('error-message');
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Deshabilitar el botón mientras se procesa
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Enviando...';
+                
+                // Preparar los parámetros para EmailJS
+                const templateParams = {
+                    mensaje: document.getElementById('mensaje').value,
+                    email_from: document.getElementById('email-from').value
+                };
+                
+                // Enviar el correo usando EmailJS
+                // IMPORTANTE: Reemplaza 'TU_SERVICE_ID' y 'TU_TEMPLATE_ID' con tus IDs reales
+                emailjs.send('TU_SERVICE_ID', 'TU_TEMPLATE_ID', templateParams)
+                  .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    
+                    // Mostrar mensaje de éxito
+                    formStatus.classList.remove('hidden');
+                    successMessage.classList.remove('hidden');
+                    errorMessage.classList.add('hidden');
+                    
+                    // Resetear el formulario
+                    contactForm.reset();
+                    
+                    // Habilitar el botón de nuevo
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Enviar mensaje';
+                    
+                    // Ocultar el mensaje después de unos segundos
+                    setTimeout(() => {
+                      formStatus.classList.add('hidden');
+                    }, 5000);
+                  }, function(error) {
+                    console.log('FAILED...', error);
+                    
+                    // Mostrar mensaje de error
+                    formStatus.classList.remove('hidden');
+                    errorMessage.classList.remove('hidden');
+                    successMessage.classList.add('hidden');
+                    
+                    // Habilitar el botón de nuevo
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Enviar mensaje';
+                  });
+            });
+        }
+    } catch (e) {
+        console.error('Error al inicializar el formulario de contacto:', e);
+    }
 });
