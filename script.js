@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Manejo de error
             });
     });
-                
+       }         
                 // Enviar el correo usando EmailJS
                 // IMPORTANTE: Reemplaza 'TU_SERVICE_ID' y 'TU_TEMPLATE_ID' con tus IDs reales
                 emailjs.send('service_oul4shn', 'template_yciv6kn', templateParams)
