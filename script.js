@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
     try {
         // Inicializar EmailJS con tu clave pública
         // IMPORTANTE: Reemplaza 'TU_CLAVE_PUBLICA' con tu clave pública real de EmailJS
-        emailjs.init('TU_CLAVE_PUBLICA');
+        emailjs.init('XHBKzeEZTP0LnoRDF');
         
         // Referencia al formulario
         const contactForm = document.getElementById('contact-form');
@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Enviar el correo usando EmailJS
                 // IMPORTANTE: Reemplaza 'TU_SERVICE_ID' y 'TU_TEMPLATE_ID' con tus IDs reales
-                emailjs.send('TU_SERVICE_ID', 'TU_TEMPLATE_ID', templateParams)
+                emailjs.send('service_oul4shn', 'template_yciv6kn', templateParams)
                   .then(function(response) {
                     console.log('SUCCESS!', response.status, response.text);
                     
