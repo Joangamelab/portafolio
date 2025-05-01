@@ -165,18 +165,41 @@ document.addEventListener('DOMContentLoaded', function() {
         const errorMessage = document.getElementById('error-message');
         
         if (contactForm) {
-            contactForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-                
-                // Deshabilitar el botón mientras se procesa
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Enviando...';
-                
-                // Preparar los parámetros para EmailJS
-                const templateParams = {
-                    mensaje: document.getElementById('mensaje').value,
-                    email_from: document.getElementById('email-from').value
-                };
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Deshabilitar el botón mientras se procesa
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
+
+        // Obtener los valores de los campos
+        const mensaje = document.getElementById('mensaje').value;
+        const email_from = document.getElementById('email-from').value;
+
+        // Validar que los campos no estén vacíos
+        if (!mensaje || !email_from) {
+            alert("Por favor, completa todos los campos.");
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Enviar mensaje';
+            return; // Salir de la función si hay campos vacíos
+        }
+
+        // Preparar los parámetros para EmailJS
+        const templateParams = {
+            mensaje: mensaje,
+            email_from: email_from
+        };
+
+        // Enviar el correo usando EmailJS
+        emailjs.send('service_oul4shn', 'template_yciv6kn', templateParams)
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+                // Manejo de éxito
+            }, function(error) {
+                console.error('Error al enviar el mensaje:', error);
+                // Manejo de error
+            });
+    });
                 
                 // Enviar el correo usando EmailJS
                 // IMPORTANTE: Reemplaza 'TU_SERVICE_ID' y 'TU_TEMPLATE_ID' con tus IDs reales
