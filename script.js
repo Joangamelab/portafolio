@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Marcar "sobre-mí" como sección activa por defecto
     const defaultActiveLink = document.querySelector('.nav-links a[href="#sobre-mi"]');
     if (defaultActiveLink) {
-        
         defaultActiveLink.classList.add("active");
     }
 
@@ -70,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
     // --- NOVELA VISUAL ---
     let currentScene = 'start';
 
@@ -93,11 +93,11 @@ document.addEventListener('DOMContentLoaded', function() {
             dialog: 'Mi fascinación por analizar cosas viene desde pequeño que siempre me ha gustado mucho buscar el por qué de las cosas y eso me ha llevado hasta este punto al adentrarme en este mundo.',
             choices: [{ text: 'Volver a inicio', scene: 'start' }]
         },
-       skills: {
-    speaker: 'Joandev',
-    dialog: 'Actualmente tengo conocimientos básicos en Python, SQL y con el desarrollo de videojuegos he estado experimentando con Godot Engine desde hace un tiempo, usando su lenguaje similar a Python, llamado GDScript. Continuaré profundizando en todas estas herramientas.',
-    choices: [{ text: 'Volver a inicio', scene: 'start' }]
-}
+        skills: {
+            speaker: 'Joandev',
+            dialog: 'Actualmente tengo conocimientos básicos en Python, SQL y con el desarrollo de videojuegos he estado experimentando con Godot Engine desde hace un tiempo, usando su lenguaje similar a Python, llamado GDScript. Continuaré profundizando en todas estas herramientas.',
+            choices: [{ text: 'Volver a inicio', scene: 'start' }]
+        }
     };
 
     function showScene(sceneKey) {
@@ -150,94 +150,175 @@ document.addEventListener('DOMContentLoaded', function() {
 
     updateActiveSection();
     
-    // ----- FORMULARIO DE CONTACTO -----
-    // Código para inicializar EmailJS y gestionar el formulario
-    try {
-        // Inicializar EmailJS con tu clave pública
-        // IMPORTANTE: Reemplaza 'TU_CLAVE_PUBLICA' con tu clave pública real de EmailJS
-        emailjs.init('XHBKzeEZTP0LnoRDF');
-        
-        // Referencia al formulario
-        const contactForm = document.getElementById('contact-form');
-        const submitBtn = document.getElementById('submit-btn');
-        const formStatus = document.getElementById('form-status');
-        const successMessage = document.getElementById('success-message');
-        const errorMessage = document.getElementById('error-message');
-        
-        if (contactForm) {
-    contactForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        // Deshabilitar el botón mientras se procesa
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Enviando...';
-
-        // Obtener los valores de los campos
-        const mensaje = document.getElementById('mensaje').value;
-        const email_from = document.getElementById('email-from').value;
-
-        // Validar que los campos no estén vacíos
-        if (!mensaje || !email_from) {
-            alert("Por favor, completa todos los campos.");
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Enviar mensaje';
-            return; // Salir de la función si hay campos vacíos
+    // ----- FORMULARIO DE CONTACTO MEJORADO -----
+    function initializeContactForm() {
+        // Verificar si EmailJS está disponible
+        if (typeof emailjs === 'undefined') {
+            console.error('EmailJS no está cargado. Asegúrate de incluir el script de EmailJS en tu HTML.');
+            return;
         }
 
-        // Preparar los parámetros para EmailJS
-        const templateParams = {
-            mensaje: mensaje,
-            email_from: email_from
-        };
+        try {
+            // CONFIGURACIÓN IMPORTANTE: Reemplaza estos valores con los tuyos
+            const EMAILJS_CONFIG = {
+                publicKey: 'XHBKzeEZTP0LnoRDF',    // Tu clave pública de EmailJS
+                serviceId: 'service_lgsk7yd',        // Tu Service ID
+                templateId: 'template_3my7z1o'       // Tu Template ID
+            };
 
-        // Enviar el correo usando EmailJS
-        emailjs.send('service_oul4shn', 'template_yciv6kn', templateParams)
-            .then(function(response) {
-                console.log('SUCCESS!', response.status, response.text);
-                // Manejo de éxito
-            }, function(error) {
-                console.error('Error al enviar el mensaje:', error);
-                // Manejo de error
-            });
-    });
-       }         
-                // Enviar el correo usando EmailJS
-                // IMPORTANTE: Reemplaza 'TU_SERVICE_ID' y 'TU_TEMPLATE_ID' con tus IDs reales
-                emailjs.send('service_oul4shn', 'template_yciv6kn', templateParams)
-                  .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
+            // Inicializar EmailJS
+            emailjs.init(EMAILJS_CONFIG.publicKey);
+            
+            // Referencias a elementos del DOM
+            const contactForm = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const formStatus = document.getElementById('form-status');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            
+            // Verificar que todos los elementos existan
+            if (!contactForm) {
+                console.error('No se encontró el formulario con ID "contact-form"');
+                return;
+            }
+
+            if (!submitBtn) {
+                console.error('No se encontró el botón con ID "submit-btn"');
+                return;
+            }
+
+            // Validación de campos
+            function validateForm(formData) {
+                const errors = [];
+                
+                if (!formData.email || formData.email.trim() === '') {
+                    errors.push('El email es requerido');
+                } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+                    errors.push('El formato del email no es válido');
+                }
+                
+                if (!formData.mensaje || formData.mensaje.trim() === '') {
+                    errors.push('El mensaje es requerido');
+                } else if (formData.mensaje.trim().length < 10) {
+                    errors.push('El mensaje debe tener al menos 10 caracteres');
+                }
+                
+                return errors;
+            }
+
+            // Mostrar mensajes de estado
+            function showMessage(type, message) {
+                if (!formStatus) return;
+                
+                formStatus.classList.remove('hidden');
+                
+                if (type === 'success') {
+                    if (successMessage) {
+                        successMessage.textContent = message;
+                        successMessage.classList.remove('hidden');
+                    }
+                    if (errorMessage) {
+                        errorMessage.classList.add('hidden');
+                    }
+                } else if (type === 'error') {
+                    if (errorMessage) {
+                        errorMessage.textContent = message;
+                        errorMessage.classList.remove('hidden');
+                    }
+                    if (successMessage) {
+                        successMessage.classList.add('hidden');
+                    }
+                }
+                
+                // Ocultar mensaje después de 5 segundos
+                setTimeout(() => {
+                    formStatus.classList.add('hidden');
+                }, 5000);
+            }
+
+            // Manejador del envío del formulario
+            contactForm.addEventListener('submit', async function(event) {
+                event.preventDefault();
+                
+                // Obtener datos del formulario
+                const formData = {
+                    email: document.getElementById('email-from')?.value || '',
+                    mensaje: document.getElementById('mensaje')?.value || ''
+                };
+                
+                // Validar formulario
+                const validationErrors = validateForm(formData);
+                if (validationErrors.length > 0) {
+                    showMessage('error', validationErrors.join('. '));
+                    return;
+                }
+                
+                // Deshabilitar botón y mostrar estado de carga
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Enviando...';
+                
+                try {
+                    // Preparar parámetros para el template
+                    const templateParams = {
+                        from_email: formData.email,
+                        message: formData.mensaje,
+                        from_name: formData.email.split('@')[0], // Usar parte del email como nombre
+                        to_name: 'Joandev', // Tu nombre
+                        reply_to: formData.email
+                    };
+                    
+                    // Enviar email
+                    const response = await emailjs.send(
+                        EMAILJS_CONFIG.serviceId,
+                        EMAILJS_CONFIG.templateId,
+                        templateParams
+                    );
+                    
+                    console.log('Mensaje enviado exitosamente:', response);
                     
                     // Mostrar mensaje de éxito
-                    formStatus.classList.remove('hidden');
-                    successMessage.classList.remove('hidden');
-                    errorMessage.classList.add('hidden');
+                    showMessage('success', '¡Mensaje enviado correctamente! Te responderé pronto.');
                     
-                    // Resetear el formulario
+                    // Resetear formulario
                     contactForm.reset();
                     
-                    // Habilitar el botón de nuevo
+                } catch (error) {
+                    console.error('Error al enviar mensaje:', error);
+                    
+                    let errorMsg = 'Error al enviar el mensaje. ';
+                    
+                    if (error.status === 400) {
+                        errorMsg += 'Verifica la configuración del servicio.';
+                    } else if (error.status === 401) {
+                        errorMsg += 'Error de autenticación. Verifica tu clave pública.';
+                    } else if (error.status === 404) {
+                        errorMsg += 'Servicio o template no encontrado.';
+                    } else {
+                        errorMsg += 'Inténtalo de nuevo más tarde.';
+                    }
+                    
+                    showMessage('error', errorMsg);
+                    
+                } finally {
+                    // Rehabilitar botón
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Enviar mensaje';
-                    
-                    // Ocultar el mensaje después de unos segundos
-                    setTimeout(() => {
-                      formStatus.classList.add('hidden');
-                    }, 5000);
-                  }, function(error) {
-                    console.log('FAILED...', error);
-                    
-                    // Mostrar mensaje de error
-                    formStatus.classList.remove('hidden');
-                    errorMessage.classList.remove('hidden');
-                    successMessage.classList.add('hidden');
-                    
-                    // Habilitar el botón de nuevo
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Enviar mensaje';
-                  });
+                }
             });
+            
+            console.log('Formulario de contacto inicializado correctamente');
+            
+        } catch (error) {
+            console.error('Error al inicializar el formulario de contacto:', error);
         }
-    } catch (e) {
-        console.error('Error al inicializar el formulario de contacto:', e);
+    }
+
+    // Inicializar el formulario cuando se cargue EmailJS
+    // Si EmailJS ya está disponible, inicializar inmediatamente
+    if (typeof emailjs !== 'undefined') {
+        initializeContactForm();
+    } else {
+        // Si no, esperar a que se cargue
+        window.addEventListener('load', initializeContactForm);
     }
 });
