@@ -79,8 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
             dialog: 'Se Bienvenido a mi historia interactiva. Descubre mi camino en el desarrollo de videojuegos y el análisis de datos.',
             choices: [
                 { text: 'Historia videojuegos', scene: 'games' },
-                { text: 'Historia Big Data', scene: 'data' },
-                { text: 'Mis habilidades', scene: 'skills' }
+                { text: 'Historia Big Data', scene: 'data' }
             ]
         },
         games: {
@@ -93,11 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
             dialog: 'Mi fascinación por analizar cosas viene desde pequeño que siempre me ha gustado mucho buscar el por qué de las cosas y eso me ha llevado hasta este punto al adentrarme en este mundo.',
             choices: [{ text: 'Volver a inicio', scene: 'start' }]
         },
-        skills: {
-            speaker: 'Joandev',
-            dialog: 'Actualmente tengo conocimientos básicos en Python, SQL y con el desarrollo de videojuegos he estado experimentando con Godot Engine desde hace un tiempo, usando su lenguaje similar a Python, llamado GDScript. Continuaré profundizando en todas estas herramientas.',
-            choices: [{ text: 'Volver a inicio', scene: 'start' }]
-        }
     };
 
     function showScene(sceneKey) {
